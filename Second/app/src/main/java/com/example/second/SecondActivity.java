@@ -24,23 +24,23 @@ public class SecondActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_second);
 
-        ImageButton img1=findViewById(R.id.buttonImg1);
-        ImageButton img2=findViewById(R.id.buttonImg2);
+        ImageButton img1 = findViewById(R.id.buttonImg1);
+        ImageButton img2 = findViewById(R.id.buttonImg2);
 
-        sound1=MediaPlayer.create(this, R.raw.sound_1);
-        sound2=MediaPlayer.create(this, R.raw.sound_2);
+        sound1 = MediaPlayer.create(this, R.raw.sound_1);
+        sound2 = MediaPlayer.create(this, R.raw.sound_2);
 
         img1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                soundPlayButton(sound1,sound2);
+                soundPlayButton(sound1, sound2);
             }
         });
 
         img2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                soundPlayButton(sound2,sound1);
+                soundPlayButton(sound2, sound1);
             }
         });
 
@@ -52,7 +52,15 @@ public class SecondActivity extends AppCompatActivity {
                 startActivity(intent);
 
 
+            }
+        });
 
+        Button btnSt = findViewById(R.id.buttonStop);
+        btnSt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sound1.stop();
+                sound2.stop();
             }
         });
 
@@ -62,35 +70,34 @@ public class SecondActivity extends AppCompatActivity {
 //        startActivity(intent);
 //    }
 
-    public void soundPlayButton(MediaPlayer snd1, MediaPlayer snd2){
+
+    public void soundPlayButton(MediaPlayer snd1, MediaPlayer snd2) {
+
         if (snd1.isPlaying()) {
             snd1.pause();
             snd2.seekTo(0);
             //snd1.stop();
 
             snd1.setLooping(false);
+
         }
+//        else  {
+//            snd1.start();
+//            snd1.setLooping(true);
+//        }
 
         if (snd2.isPlaying()) {
             snd2.pause();
             snd1.seekTo(0);
             snd2.setLooping(false);
         }
+//        else {
+//            snd2.start();
+//            snd2.setLooping(true);
+//      //  }
         snd1.start();
         snd1.setLooping(true);
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
