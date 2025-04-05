@@ -7,4 +7,31 @@
     android:layout_height="match_parent"
     tools:context=".ResultDialog">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/lavender">
+
+        <TextView
+            android:id="@+id/messageText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Result"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/startAgainButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start again"
+            android:backgroundTint="@color/white"
+            app:cornerRadius="20dp"
+            android:layout_margin="20dp"
+            android:textAllCaps="true"
+            android:textColor="@color/blue"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
