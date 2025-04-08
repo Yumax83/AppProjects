@@ -113,12 +113,12 @@
             android:layout_margin="10dp"
             android:autofillHints="no"
             android:background="@drawable/green_border"
-            android:ems="13"
+            android:ems="20"
             android:hint="Enter player name"
 
             android:padding="10dp"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="italic" />
 
         <Button
@@ -136,7 +136,7 @@
             android:textSize="20sp"/>
 
         <Button
-            android:id="@+id/startEasyLevel5"
+            android:id="@+id/startDifficultLevelButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"

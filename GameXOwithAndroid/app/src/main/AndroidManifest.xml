@@ -13,6 +13,12 @@
         android:theme="@style/Theme.GameXOwithAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".ResultDialog"
+            android:exported="false" />
+        <activity
+            android:name=".PlayingFieldDifficult"
+            android:exported="false" />
+        <activity
             android:name=".PlayingFieldEasy"
             android:exported="false" />
         <activity

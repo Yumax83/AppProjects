@@ -151,15 +151,26 @@ public class PlayingField extends AppCompatActivity {
             imageView.setImageResource(R.drawable.ximage);
 
             if (checkResults()) {
-                ResultDialog resultDialog = new ResultDialog(PlayingField.this, playerOneName.getText().toString() + "is winner", PlayingField.this);
-                resultDialog.setCancelable(false);
-                resultDialog.show();
+                if ( activePlayer==1) {
+                    ResultDialog resultDialog = new ResultDialog(PlayingField.this, playerOneName.getText().toString() + "is winner", PlayingField.this);
+                    resultDialog.setCancelable(false);
+                    resultDialog.show();
+
+                }
             }
 
             changePlayerTurn(2);
             totalSelectBoxes++;
         } else {
             imageView.setImageResource(R.drawable.oimage);
+            if (checkResults()) {
+                        if ( activePlayer==2) {
+                    ResultDialog resultDialog = new ResultDialog(PlayingField.this, playerTwoName.getText().toString() + "is winner", PlayingField.this);
+                    resultDialog.setCancelable(false);
+                    resultDialog.show();
+
+                }
+            }
             changePlayerTurn(1);
             totalSelectBoxes++;
         }

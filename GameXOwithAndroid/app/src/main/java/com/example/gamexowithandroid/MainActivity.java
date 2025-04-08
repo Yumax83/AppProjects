@@ -23,21 +23,37 @@ public class MainActivity extends AppCompatActivity {
 
         EditText playerName = findViewById(R.id.playerName);
         Button startEasyLevelButton = findViewById(R.id.startEasyLevelButton);
+        Button startDifficultLevelButton= findViewById(R.id.startDifficultLevelButton);
+
 
         startEasyLevelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String getPlayerName = playerName.getText().toString();
+                String getAndroidName="Android";
                 if (getPlayerName.isEmpty()){
-                    Toast.makeText(MainActivity.this, "Please enter plaeyr name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Please enter player name", Toast.LENGTH_SHORT).show();
                 }else {
                     Intent intent = new Intent(MainActivity.this, PlayingFieldEasy.class);
-                    intent.putExtra("playerName", getPlayerName);
+                    intent.putExtra("Player", getPlayerName);
+                    intent.putExtra("Android", getAndroidName);
                     startActivity(intent);
                 }
             }
         });
-
+        startDifficultLevelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String getPlayerName = playerName.getText().toString();
+                if (getPlayerName.isEmpty()){
+                    Toast.makeText(MainActivity.this, "Please enter player name", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = new Intent(MainActivity.this, PlayingFieldDifficult.class);
+                    intent.putExtra("Player", getPlayerName);
+                    startActivity(intent);
+                }
+            }
+        });
 
     }
 }
