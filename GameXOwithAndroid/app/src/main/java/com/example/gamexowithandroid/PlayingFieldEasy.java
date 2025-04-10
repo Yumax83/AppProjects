@@ -29,6 +29,10 @@ public class PlayingFieldEasy extends AppCompatActivity {
     private TextView androidName;
     //private String androidName="Android";
 
+    private int currentScoreOne = 0;
+    private int currentScoreAndroid = 0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +69,6 @@ public class PlayingFieldEasy extends AppCompatActivity {
         image9 = findViewById(R.id.image9);
 
         changePlayerTurn(activePlayer);
-
 
 
         image1.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +168,9 @@ public class PlayingFieldEasy extends AppCompatActivity {
         playerName = findViewById(R.id.playerName);
         androidName = findViewById(R.id.androidName);
 
+        TextView scorePlayer = findViewById(R.id.scoreOne);
+        TextView scoreAndroid = findViewById(R.id.scoreAndroid);
+
         if (activePlayer == 1) {
             imageView.setImageResource(R.drawable.xim);
 
@@ -172,22 +178,38 @@ public class PlayingFieldEasy extends AppCompatActivity {
                 ResultDialog resultDialog = new ResultDialog(PlayingFieldEasy.this, playerName.getText().toString() + " is winner", PlayingFieldEasy.this);
                 resultDialog.setCancelable(false);
                 resultDialog.show();
-            }
+                currentScoreOne++;
+                scorePlayer.setText(String.valueOf(currentScoreOne));
+            } else if (totalSelectBoxes ==9) {
+                ResultDialog resultDialog = new ResultDialog(PlayingFieldEasy.this, " Math Draw", PlayingFieldEasy.this);
+                resultDialog.setCancelable(false);
+                resultDialog.show();
 
-            changePlayerTurn(2);
-            totalSelectBoxes++;
+            } else {
+                changePlayerTurn(2);
+                                totalSelectBoxes++;
+                                
+            }
         } else {
             imageView.setImageResource(R.drawable.oim);
-
             if (checkResults()) {
                 ResultDialog resultDialog = new ResultDialog(PlayingFieldEasy.this, androidName.getText().toString() + " is winner", PlayingFieldEasy.this);
                 resultDialog.setCancelable(false);
                 resultDialog.show();
+                currentScoreAndroid++;
+                scoreAndroid.setText(String.valueOf(currentScoreAndroid));
             }
-            changePlayerTurn(1);
-            totalSelectBoxes++;
+            else if (totalSelectBoxes ==9) {
+                ResultDialog resultDialog = new ResultDialog(PlayingFieldEasy.this, " Math Draw", PlayingFieldEasy.this);
+                resultDialog.setCancelable(false);
+                resultDialog.show();
+            }else {
+                changePlayerTurn(1);
+                totalSelectBoxes++;
+            }
         }
     }
+
 
     private boolean checkResults() {
         boolean response = false;
