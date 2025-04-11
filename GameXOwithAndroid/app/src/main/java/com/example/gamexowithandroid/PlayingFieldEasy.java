@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PlayingFieldEasy extends AppCompatActivity {
@@ -23,7 +24,7 @@ public class PlayingFieldEasy extends AppCompatActivity {
     private int[] boxPositions = {0, 0, 0, 0, 0, 0, 0, 0, 0};
     private int totalSelectBoxes = 1;
 
-    private ImageView image1, image2, image3, image4, image5, image6, image7, image8, image9;
+    //  private ImageView image1, image2, image3, image4, image5, image6, image7, image8, image9;
 
     private TextView playerName;
     private TextView androidName;
@@ -31,7 +32,7 @@ public class PlayingFieldEasy extends AppCompatActivity {
 
     private int currentScoreOne = 0;
     private int currentScoreAndroid = 0;
-
+    ImageView[] image = new ImageView[9];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,88 +59,101 @@ public class PlayingFieldEasy extends AppCompatActivity {
         playerName.setText(getPlayerName);
         androidName.setText(getAndroidName);
 
-        image1 = findViewById(R.id.image1);
-        image2 = findViewById(R.id.image2);
-        image3 = findViewById(R.id.image3);
-        image4 = findViewById(R.id.image4);
-        image5 = findViewById(R.id.image5);
-        image6 = findViewById(R.id.image6);
-        image7 = findViewById(R.id.image7);
-        image8 = findViewById(R.id.image8);
-        image9 = findViewById(R.id.image9);
+
+
+        image[0] = findViewById(R.id.image1);
+        image[1] = findViewById(R.id.image2);
+        image[2] = findViewById(R.id.image3);
+        image[3] = findViewById(R.id.image4);
+        image[4] = findViewById(R.id.image5);
+        image[5] = findViewById(R.id.image6);
+        image[6] = findViewById(R.id.image7);
+        image[7] = findViewById(R.id.image8);
+        image[8] = findViewById(R.id.image9);
 
         changePlayerTurn(activePlayer);
 
 
-        image1.setOnClickListener(new View.OnClickListener() {
+        image[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isBoxSelectTable(0)) {
                     performAction((ImageView) v, 0);
+                    changePlayerTurn(2);
+
                 }
             }
         });
-        image2.setOnClickListener(new View.OnClickListener() {
+        image[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isBoxSelectTable(1)) {
                     performAction((ImageView) v, 1);
+                    changePlayerTurn(2);
+
                 }
             }
         });
-        image3.setOnClickListener(new View.OnClickListener() {
+        image[2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isBoxSelectTable(2)) {
                     performAction((ImageView) v, 2);
+
                 }
             }
         });
-        image4.setOnClickListener(new View.OnClickListener() {
+        image[3].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isBoxSelectTable(3)) {
                     performAction((ImageView) v, 3);
+
                 }
             }
         });
-        image5.setOnClickListener(new View.OnClickListener() {
+        image[4].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isBoxSelectTable(4)) {
                     performAction((ImageView) v, 4);
+
                 }
             }
         });
-        image6.setOnClickListener(new View.OnClickListener() {
+        image[5].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isBoxSelectTable(5)) {
                     performAction((ImageView) v, 5);
+
                 }
             }
         });
-        image7.setOnClickListener(new View.OnClickListener() {
+        image[6].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isBoxSelectTable(6)) {
                     performAction((ImageView) v, 6);
+
                 }
             }
         });
-        image8.setOnClickListener(new View.OnClickListener() {
+        image[7].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isBoxSelectTable(7)) {
                     performAction((ImageView) v, 7);
+
                 }
             }
         });
-        image9.setOnClickListener(new View.OnClickListener() {
+        image[8].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isBoxSelectTable(8)) {
                     performAction((ImageView) v, 8);
+
                 }
             }
         });
@@ -184,14 +198,21 @@ public class PlayingFieldEasy extends AppCompatActivity {
                 ResultDialog resultDialog = new ResultDialog(PlayingFieldEasy.this, " Math Draw", PlayingFieldEasy.this);
                 resultDialog.setCancelable(false);
                 resultDialog.show();
-
-            } else {
-                changePlayerTurn(2);
-                                totalSelectBoxes++;
-                                
             }
-        } else {
-            imageView.setImageResource(R.drawable.oim);
+//            } else {
+//                changePlayerTurn(2);
+//                                totalSelectBoxes++;
+//
+//            }
+
+
+        }
+        else {
+            boxPositions[selectedBoxPosition] = activePlayer;
+            image[randomPos()].setImageResource(R.drawable.oim);
+            changePlayerTurn(1);
+            totalSelectBoxes++;
+            //imageView.setImageResource(R.drawable.oim);
             if (checkResults()) {
                 ResultDialog resultDialog = new ResultDialog(PlayingFieldEasy.this, androidName.getText().toString() + " is winner", PlayingFieldEasy.this);
                 resultDialog.setCancelable(false);
@@ -235,25 +256,36 @@ public class PlayingFieldEasy extends AppCompatActivity {
         boxPositions = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
         activePlayer = 1;
         totalSelectBoxes = 1;
-        image1 = findViewById(R.id.image1);
-        image2 = findViewById(R.id.image2);
-        image3 = findViewById(R.id.image3);
-        image4 = findViewById(R.id.image4);
-        image5 = findViewById(R.id.image5);
-        image6 = findViewById(R.id.image6);
-        image7 = findViewById(R.id.image7);
-        image8 = findViewById(R.id.image8);
-        image9 = findViewById(R.id.image9);
+        image[0] = findViewById(R.id.image1);
+        image[1] = findViewById(R.id.image2);
+        image[2] = findViewById(R.id.image3);
+        image[3] = findViewById(R.id.image4);
+        image[4] = findViewById(R.id.image5);
+        image[5] = findViewById(R.id.image6);
+        image[6] = findViewById(R.id.image7);
+        image[7] = findViewById(R.id.image8);
+        image[8] = findViewById(R.id.image9);
 
-        image1.setImageResource(R.drawable.white_box);
-        image2.setImageResource(R.drawable.white_box);
-        image3.setImageResource(R.drawable.white_box);
-        image4.setImageResource(R.drawable.white_box);
-        image5.setImageResource(R.drawable.white_box);
-        image6.setImageResource(R.drawable.white_box);
-        image7.setImageResource(R.drawable.white_box);
-        image8.setImageResource(R.drawable.white_box);
-        image9.setImageResource(R.drawable.white_box);
+        image[0].setImageResource(R.drawable.white_box);
+        image[1].setImageResource(R.drawable.white_box);
+        image[2].setImageResource(R.drawable.white_box);
+        image[3].setImageResource(R.drawable.white_box);
+        image[4].setImageResource(R.drawable.white_box);
+        image[5].setImageResource(R.drawable.white_box);
+        image[6].setImageResource(R.drawable.white_box);
+        image[7].setImageResource(R.drawable.white_box);
+        image[8].setImageResource(R.drawable.white_box);
+    }
+
+    public int randomPos(){
+       int rp = 0;
+        for (int i = 0; i < boxPositions.length; i++) {
+            if (boxPositions[i] == 0) {
+                rp=i;
+
+            }
+        }
+        return rp;
     }
 
 }
