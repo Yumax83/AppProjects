@@ -6,15 +6,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class PlayingFieldEasy extends AppCompatActivity {
 
@@ -28,7 +24,6 @@ public class PlayingFieldEasy extends AppCompatActivity {
 
     private TextView playerName;
     private TextView androidName;
-    //private String androidName="Android";
 
     private int currentScoreOne = 0;
     private int currentScoreAndroid = 0;
@@ -59,8 +54,6 @@ public class PlayingFieldEasy extends AppCompatActivity {
         playerName.setText(getPlayerName);
         androidName.setText(getAndroidName);
 
-
-
         image[0] = findViewById(R.id.image1);
         image[1] = findViewById(R.id.image2);
         image[2] = findViewById(R.id.image3);
@@ -73,87 +66,112 @@ public class PlayingFieldEasy extends AppCompatActivity {
 
         changePlayerTurn(activePlayer);
 
-
         image[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                activePlayer = 1;
                 if (isBoxSelectTable(0)) {
                     performAction((ImageView) v, 0);
-                    changePlayerTurn(2);
 
-                }
+                if ((!checkResults()) && (totalSelectBoxes != 9)) {
+                    performActionAndroid((ImageView) v, randomPos());
+                }}
             }
         });
         image[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                activePlayer = 1;
                 if (isBoxSelectTable(1)) {
                     performAction((ImageView) v, 1);
-                    changePlayerTurn(2);
 
-                }
+                if ((!checkResults()) && (totalSelectBoxes != 9)) {
+                    performActionAndroid((ImageView) v, randomPos());
+                }}
             }
         });
         image[2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                activePlayer = 1;
                 if (isBoxSelectTable(2)) {
                     performAction((ImageView) v, 2);
 
-                }
+                if ((!checkResults()) && (totalSelectBoxes != 9)) {
+                    performActionAndroid((ImageView) v, randomPos());
+                }}
             }
         });
         image[3].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                activePlayer = 1;
                 if (isBoxSelectTable(3)) {
                     performAction((ImageView) v, 3);
 
-                }
+                if ((!checkResults()) && (totalSelectBoxes != 9)) {
+                    performActionAndroid((ImageView) v, randomPos());
+                }}
             }
         });
         image[4].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                activePlayer = 1;
                 if (isBoxSelectTable(4)) {
                     performAction((ImageView) v, 4);
 
-                }
+                if ((!checkResults()) && (totalSelectBoxes != 9)) {
+                    performActionAndroid((ImageView) v, randomPos());
+                }}
             }
         });
         image[5].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                activePlayer = 1;
                 if (isBoxSelectTable(5)) {
                     performAction((ImageView) v, 5);
 
-                }
+                if ((!checkResults()) && (totalSelectBoxes != 9)) {
+                    performActionAndroid((ImageView) v, randomPos());
+                }}
             }
         });
         image[6].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                activePlayer = 1;
                 if (isBoxSelectTable(6)) {
                     performAction((ImageView) v, 6);
 
-                }
+                if ((!checkResults()) && (totalSelectBoxes != 9)) {
+                    performActionAndroid((ImageView) v, randomPos());
+                }}
             }
         });
         image[7].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                activePlayer = 1;
                 if (isBoxSelectTable(7)) {
                     performAction((ImageView) v, 7);
 
-                }
+                if ((!checkResults()) && (totalSelectBoxes != 9)) {
+                    performActionAndroid((ImageView) v, randomPos());
+                }}
             }
         });
         image[8].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                activePlayer = 1;
                 if (isBoxSelectTable(8)) {
                     performAction((ImageView) v, 8);
 
+                    if ((!checkResults()) && (totalSelectBoxes != 9)) {
+                        performActionAndroid((ImageView) v, randomPos());
+                    }
                 }
             }
         });
@@ -175,18 +193,17 @@ public class PlayingFieldEasy extends AppCompatActivity {
     }
 
     private void performAction(ImageView imageView, int selectedBoxPosition) {
-        boxPositions[selectedBoxPosition] = activePlayer;
-        imageView.setBackgroundResource(R.drawable.white_box);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
 
-        playerName = findViewById(R.id.playerName);
-        androidName = findViewById(R.id.androidName);
 
-        TextView scorePlayer = findViewById(R.id.scoreOne);
-        TextView scoreAndroid = findViewById(R.id.scoreAndroid);
+            boxPositions[selectedBoxPosition] = activePlayer;
+            playerName = findViewById(R.id.playerName);
+            androidName = findViewById(R.id.androidName);
 
-        if (activePlayer == 1) {
-            imageView.setImageResource(R.drawable.xim);
+            TextView scorePlayer = findViewById(R.id.scoreOne);
+
+            image[selectedBoxPosition].setImageResource(R.drawable.xim);
+            image[selectedBoxPosition].setBackgroundResource(R.drawable.white_box);
+            image[selectedBoxPosition].setScaleType(ImageView.ScaleType.CENTER);
 
             if (checkResults()) {
                 ResultDialog resultDialog = new ResultDialog(PlayingFieldEasy.this, playerName.getText().toString() + " is winner", PlayingFieldEasy.this);
@@ -194,43 +211,47 @@ public class PlayingFieldEasy extends AppCompatActivity {
                 resultDialog.show();
                 currentScoreOne++;
                 scorePlayer.setText(String.valueOf(currentScoreOne));
-            } else if (totalSelectBoxes ==9) {
+            } else if (totalSelectBoxes == 9) {
                 ResultDialog resultDialog = new ResultDialog(PlayingFieldEasy.this, " Math Draw", PlayingFieldEasy.this);
                 resultDialog.setCancelable(false);
                 resultDialog.show();
-            }
-//            } else {
-//                changePlayerTurn(2);
-//                                totalSelectBoxes++;
-//
-//            }
-
+            } else {
+                changePlayerTurn(2);
+                totalSelectBoxes++;
 
         }
-        else {
-            boxPositions[selectedBoxPosition] = activePlayer;
-            image[randomPos()].setImageResource(R.drawable.oim);
-            changePlayerTurn(1);
-            totalSelectBoxes++;
-            //imageView.setImageResource(R.drawable.oim);
+    }
+
+    private void performActionAndroid(ImageView imageView, int pos) {
+        TextView scoreAndroid = findViewById(R.id.scoreAndroid);
+
+        if (isBoxSelectTable(pos)) {
+            boxPositions[pos] = activePlayer;
+            playerName = findViewById(R.id.playerName);
+            androidName = findViewById(R.id.androidName);
+
+            image[pos].setImageResource(R.drawable.oim);
+            image[pos].setBackgroundResource(R.drawable.white_box);
+            image[pos].setScaleType(ImageView.ScaleType.CENTER);
+
             if (checkResults()) {
                 ResultDialog resultDialog = new ResultDialog(PlayingFieldEasy.this, androidName.getText().toString() + " is winner", PlayingFieldEasy.this);
                 resultDialog.setCancelable(false);
                 resultDialog.show();
                 currentScoreAndroid++;
                 scoreAndroid.setText(String.valueOf(currentScoreAndroid));
-            }
-            else if (totalSelectBoxes ==9) {
+            } else if (totalSelectBoxes == 9) {
                 ResultDialog resultDialog = new ResultDialog(PlayingFieldEasy.this, " Math Draw", PlayingFieldEasy.this);
                 resultDialog.setCancelable(false);
                 resultDialog.show();
-            }else {
+            } else {
                 changePlayerTurn(1);
                 totalSelectBoxes++;
             }
+        } else {
+            performActionAndroid(imageView, randomPos());
         }
     }
-
 
     private boolean checkResults() {
         boolean response = false;
@@ -277,15 +298,10 @@ public class PlayingFieldEasy extends AppCompatActivity {
         image[8].setImageResource(R.drawable.white_box);
     }
 
-    public int randomPos(){
-       int rp = 0;
-        for (int i = 0; i < boxPositions.length; i++) {
-            if (boxPositions[i] == 0) {
-                rp=i;
-
-            }
-        }
-        return rp;
+    public int randomPos() {
+        Random random = new Random();
+        int randPos = random.nextInt(8);
+        return randPos;
     }
 
 }
