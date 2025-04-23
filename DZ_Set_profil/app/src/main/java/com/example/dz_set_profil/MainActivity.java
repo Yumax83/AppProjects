@@ -112,5 +112,24 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        italicCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if (boldCheckBox.isChecked()) {
+                        textName.setTypeface(null, Typeface.BOLD_ITALIC);
+                    } else {
+                        textName.setTypeface(null, Typeface.ITALIC);
+                    }
+                } else {
+                    if (boldCheckBox.isChecked()) {
+                        textName.setTypeface(null, Typeface.BOLD);
+                    } else {
+                        textName.setTypeface(null, Typeface.NORMAL);
+                    }
+                }
+            }
+        });
     }
 }
