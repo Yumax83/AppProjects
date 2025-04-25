@@ -32,7 +32,6 @@ public class CulcDiscount extends AppCompatActivity {
         costGood = findViewById(R.id.cost_of_good);
         discFinish = findViewById(R.id.disc_finish);
         accCulc = findViewById(R.id.acc_culc);
-
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         String infCoastGood = sharedPreferences.getString(KEY_COSTGOOD, null);
         String infAccCulc = sharedPreferences.getString(KEY_ACCCULC, null);
@@ -42,64 +41,72 @@ public class CulcDiscount extends AppCompatActivity {
             costGood.setText(infCoastGood);
             accCulc.setText(infAccCulc);
             discFinish.setText(infDiscFinish);
-        } else {
-
-            calcBtn = findViewById(R.id.culc_btn);
-            calcBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    String costEditStr = costGood.getText().toString();
-                    if (!costEditStr.isEmpty()) {
-                        int cost = Integer.parseInt(costEditStr);
-                        double accCulcFinish = 0;
-                        if (cost == 0 || cost < 500) {
-                            String resAcc = String.valueOf(cost);
-                            String textAcc = "Общая стоимость: " + resAcc;
-                            accCulc.setText(textAcc);
-                            String textDisc = "Ваша скидка составила: 0%";
-                            discFinish.setText(textDisc);
-                        } else if (cost >= 500 && cost <= 1000) {
-                            accCulcFinish = cost * 0.97;
-                            String resAcc = String.valueOf(accCulcFinish);
-                            String textAcc = "Общая стоимость: " + resAcc;
-                            accCulc.setText(textAcc);
-                            String textDisc = "Ваша скидка составила: 3%";
-                            discFinish.setText(textDisc);
-                        } else if (cost > 1000) {
-                            accCulcFinish = cost * 0.95;
-                            String resAcc = String.valueOf(accCulcFinish);
-                            String textAcc = "Общая стоимость: " + resAcc;
-                            accCulc.setText(textAcc);
-                            String textDisc = "Ваша скидка составила: 5%";
-                            discFinish.setText(textDisc);
-                        }
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString(KEY_COSTGOOD, costGood.getText().toString());
-                        editor.putString(KEY_ACCCULC, accCulc.getText().toString());
-                        editor.putString(KEY_DISCFINISH, discFinish.getText().toString());
-                        editor.apply();
-                        Toast.makeText(CulcDiscount.this, "Расчет записан!", Toast.LENGTH_SHORT).show();
-
-                    } else {
-                        Toast.makeText(CulcDiscount.this, "Введите стоимость товаров!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
         }
-        newAccBtn = findViewById(R.id.new_acc_btn);
+        calcBtn = findViewById(R.id.culc_btn);
+        calcBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String costEditStr = costGood.getText().toString();
+                if (!costEditStr.isEmpty()) {
+                    int cost = Integer.parseInt(costEditStr);
+                    double accCulcFinish = 0;
+                    if (cost == 0 || cost < 500) {
+                        String resAcc = String.valueOf(cost);
+                        String textAcc = "Общая стоимость: " + resAcc;
+                        accCulc.setText(textAcc);
+                        String textDisc = "Ваша скидка составила: 0%";
+                        discFinish.setText(textDisc);
+                    } else if (cost >= 500 && cost <= 1000) {
+                        accCulcFinish = cost * 0.97;
+                        String resAcc = String.valueOf(accCulcFinish);
+                        String textAcc = "Общая стоимость: " + resAcc;
+                        accCulc.setText(textAcc);
+                        String textDisc = "Ваша скидка составила: 3%";
+                        discFinish.setText(textDisc);
+                    } else if (cost > 1000) {
+                        accCulcFinish = cost * 0.95;
+                        String resAcc = String.valueOf(accCulcFinish);
+                        String textAcc = "Общая стоимость: " + resAcc;
+                        accCulc.setText(textAcc);
+                        String textDisc = "Ваша скидка составила: 5%";
+                        discFinish.setText(textDisc);
+                    }
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(KEY_COSTGOOD, costGood.getText().toString());
+                    editor.putString(KEY_ACCCULC, accCulc.getText().toString());
+                    editor.putString(KEY_DISCFINISH, discFinish.getText().toString());
+                    editor.apply();
+                    Toast.makeText(CulcDiscount.this, "Расчет записан!", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(CulcDiscount.this, "Введите стоимость товаров!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+            newAccBtn = findViewById(R.id.new_acc_btn);
         newAccBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();
                 editor.apply();
-                //finish();
-                costGood.setText(infCoastGood);
-                accCulc.setText(infAccCulc);
-                discFinish.setText(infDiscFinish);
-                Toast.makeText(CulcDiscount.this, "Начните заного", Toast.LENGTH_SHORT).show();
+                String costGoodText = null;
+                String accCulcText = "Общая стоимость: ";
+                String discFinishText = "Ваша скидка составила: ";
+                accCulc.setText(accCulcText);
+                discFinish.setText(discFinishText);
+                costGood.setText(costGoodText);
+
+                Toast.makeText(CulcDiscount.this, "Начните заново", Toast.LENGTH_SHORT).show();
             }
         });
+      Button  exitBtn = findViewById(R.id.exit_Btn);
+      exitBtn.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              finish();
+          }
+      });
     }
+
 }
