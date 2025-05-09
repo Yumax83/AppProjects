@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_stroke_dark_red_press_white"
                     android:layout_marginEnd="10dp"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:text="@string/back"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/level"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textColor="@color/dark_red"
                     android:gravity="end"
 
@@ -214,7 +214,7 @@
                 <ImageView
                     android:id="@+id/img_left"
                     android:layout_width="match_parent"
-                    android:layout_height="320dp"
+                    android:layout_height="220dp"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/style_img_universal"
@@ -224,7 +224,7 @@
                 <ImageView
                     android:id="@+id/img_right"
                     android:layout_width="match_parent"
-                    android:layout_height="320dp"
+                    android:layout_height="220dp"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/style_img_universal"
@@ -246,7 +246,7 @@
                     android:layout_height="wrap_content"
                     android:text="Text Left"
                     android:textColor="@color/dark_red"
-                    android:textSize="30sp"
+                    android:textSize="24sp"
                     android:layout_marginEnd="5dp"
                     android:gravity="center"
                     android:layout_weight="1"/>
@@ -257,7 +257,7 @@
                     android:layout_height="wrap_content"
                     android:text="Text Right"
                     android:textColor="@color/dark_red"
-                    android:textSize="30sp"
+                    android:textSize="24sp"
                     android:layout_marginEnd="5dp"
                     android:gravity="center"
                     android:layout_weight="1"/>
