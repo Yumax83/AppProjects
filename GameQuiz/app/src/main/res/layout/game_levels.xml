@@ -40,14 +40,14 @@
                     android:id="@+id/button_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                     android:text="@string/back"
                     android:layout_margin="10dp"
                     android:background="@drawable/button_stroke_black_opacity_press_white"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
+                    android:text="@string/back"
                     android:textAllCaps="false"
                     android:textColor="@color/black_opacity"
-                    android:textSize="24sp"/>
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
